@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<assert.h>
+void strcpy1(char* p1, char* p2) {
+	while (*p2 != '\0') {
+		*p1 = *p2;
+		*p1++;
+		*p2++;
+	}
+	*p1 = '\0';
+}
+void strcpy1(char* p1, char* p2) {
+	assert(*p2=='h');
+	while (*p1++ = *p2++) {
+		
+	}
+}
+int main()
+{
+	char arr1[] = "xxxxxxxxxxxxxxxxx";
+	char arr2[] = "hello world";
+	strcpy1(arr1, arr2);
+	printf("%s", arr1);
+}
+int main()
+{
+	const int num = 10;
+	const int* p = &num;
+	//修饰指针变量的时候，
+	// 如果放在左边，修饰的是*p指向的内容不可改变，但指针变量本身是可以修改的也就是p
+	int* const p1 = &num;
+	// 如果放在右边，修饰的是p指向的地址不可改变，但内容可以改变
+
+	printf("%d", num);
+}
