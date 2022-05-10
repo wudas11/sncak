@@ -1,0 +1,37 @@
+void qsort(void* base,//base中存放的是待排序数据中第一个对象的地址，
+					 //void* 是一个待定指针可以存放任何类型数据
+			size_t num,//排序元素个数
+			size_t size,//一个元素的大小，单位字节
+			int (*compar)(const void*,const void*))//用来比较待排序数据中的2个元素的函数
+{
+	
+}
+int cmp_int(const void* e1, const void* e2) {
+	return *(int*)e1 - *(int*)e2;
+}
+void arrop(int arr[],int a) {
+	for (int i = 0; i < a; i++) {
+		printf("%d\t", arr[i]);
+	}
+}
+void test()
+{
+	int arr[] = { 5,9,7,1,6,3,8,2,0,4 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	qsort(arr, sz, sizeof(arr[0]), cmp_int);
+	arrop(arr, sz);
+}
+struct s
+{
+	char name[10];
+	int age;
+};
+int op(const void* e1, const void* e2) {
+	return ((struct s*)e1)->age-((struct s*)e2)->age;
+}
+int main()
+{
+	struct s ss[3] = { {"哒哒哒",18},{"对对对",20},{"端对端",23} };
+	 int sz = sizeof(ss) / sizeof(ss[0]);
+	 qsort(ss, sz, sizeof(ss[0]),op);
+}
