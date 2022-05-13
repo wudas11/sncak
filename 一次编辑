@@ -1,0 +1,32 @@
+bool oneEditAway(char* first, char* second){
+
+	int i = 0;
+	int j = 0;
+	int b = strlen(first) - strlen(second);//判断两者之差是否大于2，大于2的话就不可能通过一次编辑完成
+	if ( b< 0) {
+		return oneEditAway(second, first);//把长的交换到前
+	}
+	if (strlen(first) == 1 || strlen(second) == 1) {//如果有一个字符串等于1就可以直接但差等于0或1就，可以通过一次成功
+		return 1;
+	}
+	int a = strlen(first);
+	if (abs(strlen(first) - strlen(second)) < 2) {//大于二直接失败
+		for (i = 0; i < a; i++) {
+			if (*first != *second) {//字符不同j++，j=2时直接失败
+				j++;
+				if (j == 2) {
+					return 0;
+				}
+				if (( * (first + 1) == *second) && b != 0) {
+					second--;//如果只是少一个或修改了一个交易通过这个继续保持同步
+				}
+			}
+			first++;
+			second++;//下一字符
+		}
+		return 1;
+	}
+	else return 0;
+
+}
+/*字符串有三种编辑操作:插入一个字符、删除一个字符或者替换一个字符。 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。*/
