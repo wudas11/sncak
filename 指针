@@ -1,0 +1,88 @@
+int main()
+{
+	int a[3][4] = { 0 };
+
+	printf("%d\n", sizeof(a));//48
+	printf("%d\n", sizeof(a[0][0]));//4 :a[0][0]一个元素
+	printf("%d\n", sizeof(a[0]));//16：二维数组的话就是计算第0行的元素
+	printf("%d\n", sizeof(a[0]+1));//4：a[0]作为数组名并没有单独放在sizeof内部，
+									//也没有取地址所以a[0]是第一行第一个的地址，
+									//所以+1就是跳过一个整形
+	printf("%d\n", sizeof(*(a[0] + 1)));//4
+	printf("%d\n", sizeof(a + 1));//4/8:a作为二维数组的数组名，并没有取地址，也没有单独放在
+								//sizeof内部，所以a就表示二维数组的地址，就是第一行的数组
+								//a+1就是二维数组第二行的地址
+	printf("%d\n", sizeof(*(a + 1)));//16：a+1是第二行的地址，所以*(a+1)计算的是第二行的大小
+	printf("%d\n", sizeof(&a[0] + 1));//16：a+1的地址是第一行的，+1就是第二行的地址
+	printf("%d\n", sizeof(*a));//16:第一行地址
+	printf("%D\n", sizeof(a[3]));//16:编译器自行推测，但sizeof不会去访问
+}
+int main()
+{
+	short s = 5;
+	int a = 4;
+	printf("%d\n", sizeof(s = a + 6));
+	printf("%d", s);
+}
+
+int main()
+{
+	int a[5] = { 1,2,3,4,5 };
+	int* p = (int*)(&a + 1);
+	printf("%d,%d", *(a + 1), *(p - 1));
+}
+
+struct aop
+{	
+	char name[10];
+	int age;
+}*p;//设置p的地址为0x100000，结构体大小为20
+int main()
+{
+	printf("%p\n", p + 0x1);//0x10000014：指向结构体+1就是加上结构体的大小0x为16进制
+	printf("%p\n", (unsigned long)p + 0x1);//0x1000001：p强制转换为整形了所以+1就是加1
+	printf("%p", (unsigned int*)p + 0x1);//0x1000004:强制转换为了有符号整形指针，所以+1就是跳过一个字符
+
+}
+int main()
+{
+	int a[3][2] = { (0,1), (2,3),(4,5) };//逗号表达式
+	int* p;
+	p = a[0];
+	printf("%d", p[0]);
+}
+int main()
+{
+	int a[5][5];//=int(*)[5]
+	int(*p)[4];//=int(*)[4]
+	p = a;
+	printf("%p,%d", &p[4][2] - &a[4][2], &p[4][2] - &a[4][2]);
+	//&p[4][2]跳过4行，加2个元素，&a+1跳过5个数组，加2个元素
+}
+int main()
+{
+	int aa[2][5] = { 1,2,3,4,5,6,7,8,9,10 };
+	int* p1 = (int*)(&aa + 1);
+	int* p2 = (int*)(*(aa + 1));//二维数组的aa+1=aa[1],(*(aa+1))本就是指针，所以int*没用
+	printf("%d,%d", *(p1 - 1), *(p2 - 1));
+}
+
+int main()
+{
+	char* a[] = { "work","learn","see" };
+	char** pa = a;
+	pa++;
+	printf("%s\n", *pa);
+}
+
+int main()
+{
+	char* c[] = { "enter","new","point","first" };
+	char** cp[] = { c + 3,c + 2,c + 1,c };
+	char*** cpp = cp;
+
+	printf("%s\n", **++cpp);//point
+	printf("%s\n", *-- * ++cpp + 3);//er
+	printf("%s\n", *cpp[-2] +3);//st
+	printf("%s\n", cpp[-1][-1] + 1);//ew
+}
