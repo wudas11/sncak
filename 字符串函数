@@ -69,3 +69,58 @@ int main()
 	//my_strcat(arr, arr2);
 	printf("%s", my_strcat(arr, arr2));
 }
+
+int my_strcmp(const char* p1,const char* p2)
+{
+	assert(*p1 && *p2);
+	while (*p1 == *p2) {
+		if (*p1 == '\0') {
+			return 0;
+		}
+		p1++;
+		p2++;
+	}
+	return *p1 - *p2;
+}
+
+int main()
+{
+	char* p = "abc";
+	char* p2 = "abbc";
+	int ret = my_strcmp(p, p2);
+	if (ret < 0) {
+		printf("p<p2");
+	}
+	else if (ret > 0) {
+		printf("P>p2");
+	}
+	else printf("p=p2");
+}
+
+
+
+int main()
+{
+	char arr[20] = "$$$$$$";
+	char arr2[] = { 'a','b','c','\0' };
+	strncpy(arr, arr2,4);
+	printf("%s", arr);
+	return 0;
+}
+ 
+
+int main()
+{
+	char arr1[20] = "hello ";
+	char arr2[] = "world";
+	strncat(arr1, arr2, 3);
+	printf("%s", arr1);
+}
+
+int main()
+{
+	char* p1 = "hello ";
+	char* p2 = "world";
+	int a=strncmp(p1, p2,3);
+	printf("%d",a);
+}
