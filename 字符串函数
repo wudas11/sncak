@@ -1,0 +1,71 @@
+//计数版本strlen
+//int my_strlen(const char* p) {
+//	int count = 0;
+//	assert(p != NULL);
+//	while (*p != '\0') {
+//		count++;
+//		p++;
+//	}
+//	return count;
+//}
+//
+//int main() {
+//	/*char arr[] = "abc";*/
+//	char arr[] = "dasdasd";
+//	int a=my_strlen(arr);
+//	printf("%d", a);
+//	return 0;
+//}
+
+//int main()
+//{
+//	if (strlen("asda") - strlen("sadasdasd") > 0) {
+//		printf(">\n");
+//	}
+//	else
+//	{
+//		printf("<=\n");
+//	}
+//}
+
+//int main()
+//{
+//	char arr[20] = { 0 };
+//	//arr = "hello";
+//	strcpy(arr, "hello");
+//	printf("%s", arr);
+//	return 0;
+//}
+//
+
+3. strcat
+//int main()
+//{
+//	char arr[20] = "xxxxxxxxxxx";
+//	//arr = "hello";
+//	char arr2[] = { 'a','b','c','\0'};
+//	strcpy(arr,arr2);
+//	printf("%s", arr);
+//	return 0;
+//}
+
+
+char* my_strcat(char* p1,const char* p2)
+{
+	char* ret = p1;
+	assert(p1 && p2);
+	while (*p1) {//找到字符串中的'\0'
+		p1++;
+	}
+	while (*p1++ = *p2++) {//追击字符串
+	}
+	return ret;//返回目标起始地址
+}
+ 
+int main()
+{
+	char arr[20] = "dasdas";
+	char arr2[] = "12345";
+	//my_strcat(arr, arr2);
+	printf("%s", my_strcat(arr, arr2));
+}
